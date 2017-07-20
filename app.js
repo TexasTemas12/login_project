@@ -18,11 +18,11 @@ app.use(expressSession({
   saveUnitialized: true
 }))
 
-app.get('/', function(req, res) {
-  res.render('index', {
-    Welcome: 'I made it to the home page.',
-  })
-})
+// app.get('/', function(req, res) {
+//   res.render('index', {
+//     Welcome: 'I made it to the home page.',
+//   })
+// })
 
 var userInputArray = [{
   username: "thomas",
@@ -43,6 +43,7 @@ app.get('/login', function(req, res) {
 
 app.get('/', function(req, res) {
   sess = req.session
+
   for (var i = 0; i < userInputArray.length; i++) {
     if (userInputArray[i].username === sess.username && userInputArray[i].password === sess.password) {
       loggedIn = 1
@@ -52,9 +53,12 @@ app.get('/', function(req, res) {
   if (loggedIn === 1) {
 
     return res.render('index', {
-      userShow: sess.userInput
+      userShow: 'Hello' + ' ' + sess.userInput
     })
   }
+  res.render('index', {
+    Welcome: 'Hello'
+  })
 })
 
 
